@@ -1,13 +1,16 @@
 radio.onReceivedNumber(function (receivedNumber) {
-    if (receivedNumber == 150) {
+    if (receivedNumber == 254) {
         basic.showIcon(IconNames.Silly)
         babyState = 0
     }
 })
+input.onButtonPressed(Button.A, function () {
+    babyState = 0
+})
 input.onSound(DetectedSound.Loud, function () {
     radio.sendNumber(1)
     basic.showIcon(IconNames.StickFigure)
-    babyState = 1
+    babyState = 0
 })
 let babyState = 0
 esp8266.init(SerialPin.P16, SerialPin.P15, BaudRate.BaudRate115200)
@@ -30,5 +33,7 @@ basic.forever(function () {
     if (babyState == 1) {
         esp8266.sendTelegramMessage("7556620551:AAFrgjj9yWPZzzfPE1_8QsfpfTmHvvxcOeM", "-4537034579", "Your Car is baby!")
         basic.showIcon(IconNames.TShirt)
+    } else {
+        basic.showIcon(IconNames.Rollerskate)
     }
 })

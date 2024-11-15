@@ -1,5 +1,5 @@
 radio.onReceivedNumber(function (receivedNumber) {
-    if (receivedNumber == 100) {
+    if (receivedNumber == 150) {
         basic.showIcon(IconNames.Silly)
         babyState = 0
     }
@@ -22,12 +22,13 @@ if (esp8266.isWifiConnected()) {
 } else {
     basic.showIcon(IconNames.No)
 }
-input.setSoundThreshold(SoundThreshold.Loud, 200)
+input.setSoundThreshold(SoundThreshold.Loud, 255)
 radio.setGroup(1)
 basic.forever(function () {
     basic.showIcon(IconNames.Heart)
     basic.showIcon(IconNames.SmallHeart)
     if (babyState == 1) {
         esp8266.sendTelegramMessage("7556620551:AAFrgjj9yWPZzzfPE1_8QsfpfTmHvvxcOeM", "-4537034579", "Your Car is baby!")
+        basic.showIcon(IconNames.TShirt)
     }
 })
